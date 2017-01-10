@@ -2,7 +2,7 @@ function createGmap(dataFromServer) {
   handler = Gmaps.build('Google');
   handler.buildMap({
       provider: {},
-      internal: {id: 'apartment_map'}
+      internal: {id: 'all_apartments_map'}
     },
     function() {
       markers = handler.addMarkers(dataFromServer);
@@ -12,18 +12,15 @@ function createGmap(dataFromServer) {
   );
 };
 
-// $(document).ready(function() {
-//   loadAndCreateGmap();
-//   });
 function loadAndCreateGmap() {
   // Only load map data if we have a map on the page
-  if ($('#apartment_map').length > 0) {
+  if ($('#all_apartments_map').length > 0) {
     // Access the data-apartment-id attribute on the map element
-    var apartmentId = $('#apartment_map').attr('data-apartment-id');
+    // var apartmentId = $('#all_apartments_map').attr('data-apartment-id');
 
     $.ajax({
       dataType: 'json',
-      url: '/apartments/' + apartmentId + '/map_location',
+      url: '/apartments/map_locations',
       method: 'GET',
       success: function(dataFromServer) {
         createGmap(dataFromServer);

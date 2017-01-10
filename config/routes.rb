@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :apartments do
     get 'map_location' => 'apartments#map_location'
+    get 'map_locations', on: :collection
   end
   root 'apartments#index'
 
